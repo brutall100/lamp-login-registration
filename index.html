@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>LAMP Login &amp; Registration System</title>
+    <meta name="description" content="A secure PHP + MySQL login and registration system with bcrypt passwords, prepared statements, CSRF protection and a live in-browser demo.">
+    <meta name="theme-color" content="#f2b705">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <meta property="og:title" content="LAMP Login &amp; Registration System">
+    <meta property="og:description" content="Secure PHP + MySQL auth: bcrypt, prepared statements, CSRF tokens. Try the live demo.">
+    <meta property="og:image" content="https://brutall100.github.io/lamp-login-registration/docs/screenshot.webp">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="assets/js/theme-init.js"></script>
+    <script src="assets/js/main.js" defer></script>
+    <script src="assets/js/demo.js" defer></script>
+</head>
+<body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="bg" aria-hidden="true"><div class="bg__dots"></div><div class="bg__glow"></div></div>
+
+    <header class="site-header">
+        <div class="container site-header__inner">
+            <a class="brand" href="#main">
+                <img src="favicon.svg" alt="" width="28" height="28">
+                <span>lamp<span class="brand__slash">/</span>login</span>
+            </a>
+            <nav class="nav" aria-label="Main">
+                <a href="#demo">Demo</a>
+                <a href="#features">Features</a>
+                <a href="#flow">How it works</a>
+                <a href="https://github.com/brutall100/lamp-login-registration">Code</a>
+            </nav>
+            <button class="theme-toggle" type="button" data-theme-toggle aria-label="Toggle dark mode">
+                <span class="theme-toggle__icon" aria-hidden="true"></span>
+            </button>
+        </div>
+    </header>
+
+    <main id="main">
+        <!-- Hero -->
+        <section class="container hero" aria-labelledby="hero-title">
+            <div>
+                <p class="eyebrow" data-reveal>PHP · MySQL · Apache · Linux</p>
+                <h1 id="hero-title" class="hero__title" data-reveal style="--delay: 0.08s">
+                    Login &amp; <span class="mark">Registration</span> System
+                </h1>
+                <p class="hero__lead" data-reveal style="--delay: 0.16s">
+                    A small, honest auth flow on the classic LAMP stack: sign up, log in, see a private
+                    dashboard, log out. Rebuilt with bcrypt passwords, prepared SQL and CSRF tokens.
+                </p>
+                <div class="hero__actions" data-reveal style="--delay: 0.24s">
+                    <a class="btn btn--primary" href="#demo">Try the live demo <span class="btn__icon" aria-hidden="true">↗</span></a>
+                    <a class="btn btn--ghost" href="https://github.com/brutall100/lamp-login-registration">View the code <span class="btn__icon" aria-hidden="true">↗</span></a>
+                </div>
+                <ul class="stack" aria-label="Tech stack" data-reveal style="--delay: 0.32s">
+                    <li>PHP 8</li>
+                    <li>PDO</li>
+                    <li>MySQL</li>
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>JavaScript</li>
+                </ul>
+            </div>
+
+            <aside class="card card--hover pass" aria-label="Example access pass" data-reveal style="--delay: 0.2s">
+                <div class="pass__strip"><span>ACCESS PASS</span><span>#0001</span></div>
+                <div class="pass__body">
+                    <div class="pass__who">
+                        <img src="images/avatar-alex-doe.svg" alt="Avatar with the initials AD" width="72" height="72">
+                        <div>
+                            <p class="pass__name">Alex Doe</p>
+                            <p class="pass__handle">@alex_doe</p>
+                        </div>
+                    </div>
+                    <dl class="record">
+                        <div><dt>Session</dt><dd><span class="status-dot" aria-hidden="true"></span>active</dd></div>
+                        <div><dt>Password</dt><dd>$2y$10$…bcrypt</dd></div>
+                        <div><dt>CSRF</dt><dd>token ✓</dd></div>
+                    </dl>
+                    <div class="pass__barcode" aria-hidden="true"></div>
+                </div>
+            </aside>
+        </section>
+
+        <!-- Stats -->
+        <section class="container" aria-label="Project in numbers">
+            <div class="stats" data-reveal>
+                <div class="stat">
+                    <p class="stat__value"><span data-count="100">100</span><span class="stat__unit">%</span></p>
+                    <p class="stat__label">SQL queries prepared</p>
+                </div>
+                <div class="stat">
+                    <p class="stat__value"><span data-count="60">60</span><span class="stat__unit">ch</span></p>
+                    <p class="stat__label">bcrypt hash length</p>
+                </div>
+                <div class="stat">
+                    <p class="stat__value"><span data-count="32">32</span><span class="stat__unit">B</span></p>
+                    <p class="stat__label">random CSRF token</p>
+                </div>
+                <div class="stat">
+                    <p class="stat__value"><span data-count="4">4</span><span class="stat__unit">pg</span></p>
+                    <p class="stat__label">PHP pages, no framework</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Demo -->
+        <section id="demo" class="container section" aria-labelledby="demo-title">
+            <div class="section__head" data-reveal>
+                <p class="eyebrow">Live demo</p>
+                <h2 id="demo-title" class="section__title">Try it right here</h2>
+                <p class="section__lead">
+                    Create an account, log in and open the dashboard. The forms follow the same rules
+                    as the PHP version.
+                </p>
+            </div>
+
+            <div class="demo">
+                <div class="auth-card" data-demo data-reveal>
+                    <div class="tabs" role="tablist" aria-label="Account">
+                        <button class="tab" type="button" role="tab" id="tab-register" data-tab="register" aria-controls="panel-register" aria-selected="true">Register</button>
+                        <button class="tab" type="button" role="tab" id="tab-login" data-tab="login" aria-controls="panel-login" aria-selected="false" tabindex="-1">Log in</button>
+                    </div>
+
+                    <div role="tabpanel" id="panel-register" data-panel="register" aria-labelledby="tab-register">
+                        <form class="form" data-form="register" novalidate>
+                            <div data-messages hidden></div>
+                            <div class="field">
+                                <label for="reg-username">Username</label>
+                                <input id="reg-username" name="username" type="text" autocomplete="username" required minlength="3" maxlength="30">
+                            </div>
+                            <div class="field">
+                                <label for="reg-email">Email</label>
+                                <input id="reg-email" name="email" type="email" autocomplete="email" required placeholder="alex@example.com">
+                            </div>
+                            <div class="field">
+                                <label for="reg-password">Password <span class="field__hint">min. 8 characters</span></label>
+                                <input id="reg-password" name="password" type="password" autocomplete="new-password" required minlength="8">
+                            </div>
+                            <div class="field">
+                                <label for="reg-confirm">Repeat password</label>
+                                <input id="reg-confirm" name="password_confirm" type="password" autocomplete="new-password" required minlength="8">
+                            </div>
+                            <button type="submit" class="btn btn--primary btn--block">Create account <span class="btn__icon" aria-hidden="true">↗</span></button>
+                        </form>
+                        <p class="auth-card__switch">Already have an account? <button class="link-button" type="button" data-go="login">Log in</button></p>
+                    </div>
+
+                    <div role="tabpanel" id="panel-login" data-panel="login" aria-labelledby="tab-login" hidden>
+                        <form class="form" data-form="login" novalidate>
+                            <div data-messages hidden></div>
+                            <div class="field">
+                                <label for="login-username">Username</label>
+                                <input id="login-username" name="username" type="text" autocomplete="username" required>
+                            </div>
+                            <div class="field">
+                                <label for="login-password">Password</label>
+                                <input id="login-password" name="password" type="password" autocomplete="current-password" required>
+                            </div>
+                            <button type="submit" class="btn btn--primary btn--block">Log in <span class="btn__icon" aria-hidden="true">↗</span></button>
+                        </form>
+                        <p class="auth-card__switch">New here? <button class="link-button" type="button" data-go="register">Create an account</button></p>
+                    </div>
+
+                    <div data-dashboard hidden>
+                        <p class="eyebrow">Session active</p>
+                        <p class="alert alert--success" role="status" data-messages hidden></p>
+                        <div class="profile">
+                            <span class="avatar" aria-hidden="true" data-avatar></span>
+                            <div>
+                                <h3 class="auth-card__title">Hi, <span data-name></span></h3>
+                                <p class="profile__meta" data-email></p>
+                            </div>
+                        </div>
+                        <dl class="record">
+                            <div><dt>Member since</dt><dd data-since></dd></div>
+                            <div><dt>Stored hash</dt><dd data-hash></dd></div>
+                            <div><dt>Session</dt><dd>sessionStorage (demo)</dd></div>
+                        </dl>
+                        <button type="button" class="btn btn--ghost btn--block" data-logout>
+                            Log out <span class="btn__icon" aria-hidden="true">↗</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="demo__note" data-reveal style="--delay: 0.12s">
+                    <p><strong>// Why a browser demo?</strong></p>
+                    <p>GitHub Pages only serves static files, so it cannot run PHP or MySQL.</p>
+                    <p>This demo copies the app's rules in JavaScript. Accounts stay in <em>your</em> browser
+                        (<code>localStorage</code>), and passwords are salted + SHA-256 hashed before they are saved.</p>
+                    <p>The real app in <code>app/</code> uses PHP, PDO and <code>password_hash()</code> (bcrypt).
+                        Run it locally with XAMPP to see the server version.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section id="features" class="container section" aria-labelledby="features-title">
+            <div class="section__head" data-reveal>
+                <p class="eyebrow">Features</p>
+                <h2 id="features-title" class="section__title">Small app, real security basics</h2>
+            </div>
+            <ul class="features">
+                <li class="card card--hover feature" data-reveal>
+                    <span class="feature__num">01 / passwords</span>
+                    <h3>bcrypt hashing</h3>
+                    <p><code>password_hash()</code> and <code>password_verify()</code> replace the old <code>md5()</code>. Old hashes get upgraded on login.</p>
+                </li>
+                <li class="card card--hover feature" data-reveal style="--delay: 0.08s">
+                    <span class="feature__num">02 / database</span>
+                    <h3>Prepared statements</h3>
+                    <p>Every query goes through PDO with placeholders, so user input can never change the SQL.</p>
+                </li>
+                <li class="card card--hover feature" data-reveal style="--delay: 0.16s">
+                    <span class="feature__num">03 / forms</span>
+                    <h3>CSRF tokens</h3>
+                    <p>Each form carries a random token. Log out is a POST request, not a link anyone could trigger.</p>
+                </li>
+                <li class="card card--hover feature" data-reveal>
+                    <span class="feature__num">04 / output</span>
+                    <h3>XSS-safe output</h3>
+                    <p>Everything a user typed is escaped with <code>htmlspecialchars()</code> before it reaches the page.</p>
+                </li>
+                <li class="card card--hover feature" data-reveal style="--delay: 0.08s">
+                    <span class="feature__num">05 / sessions</span>
+                    <h3>Hardened sessions</h3>
+                    <p>HttpOnly, SameSite cookies and a fresh session id after login stop session fixation.</p>
+                </li>
+                <li class="card card--hover feature" data-reveal style="--delay: 0.16s">
+                    <span class="feature__num">06 / design</span>
+                    <h3>Light, dark, mobile</h3>
+                    <p>Theme follows your system and remembers your choice. Works at 390 px and respects reduced motion.</p>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Flow -->
+        <section id="flow" class="container section" aria-labelledby="flow-title">
+            <div class="section__head" data-reveal>
+                <p class="eyebrow">How it works</p>
+                <h2 id="flow-title" class="section__title">From form to session</h2>
+            </div>
+            <ol class="flow">
+                <li data-reveal><strong>Validate</strong><span>Username, email and password are checked on the server.</span></li>
+                <li data-reveal style="--delay: 0.08s"><strong>Hash</strong><span>The password becomes a one-way bcrypt hash.</span></li>
+                <li data-reveal style="--delay: 0.16s"><strong>Store</strong><span>A prepared <code>INSERT</code> saves the user in MySQL.</span></li>
+                <li data-reveal style="--delay: 0.24s"><strong>Session</strong><span>Login verifies the hash and starts a new session.</span></li>
+            </ol>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <span>lamp-login-registration · learning project</span>
+            <a href="https://github.com/brutall100/lamp-login-registration">Source on GitHub ↗</a>
+        </div>
+    </footer>
+</body>
+</html>
